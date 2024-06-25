@@ -5,12 +5,15 @@ describe("Teams Section Teams Module All Cases", () => {
     let uniqueFullName
     let uniqueFirstName
 
-    beforeEach(() => {
-        cy.handleUncaughtException(); //handling uncaught exception
-        cy.viewport(1300, 660); //increasing the size of the page to get full view of the application
+    before(() => {
         cy.clearAllSessionStorage(); //clearing the session storage
         cy.clearAllLocalStorage();
         cy.clearIndexedDB();
+    })
+
+    beforeEach(() => {
+        cy.handleUncaughtException(); //handling uncaught exception
+        cy.viewport(1300, 660); //increasing the size of the page to get full view of the application
     })
 
     const { uniqueFullName: teamName, uniqueFirstName: updatedName } = generateUniqueName();
@@ -26,7 +29,7 @@ describe("Teams Section Teams Module All Cases", () => {
         cy.wait(5000)
         cy.get("#Team > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
-        cy.xpath("/html/body/div[1]/div/section/section/main/div[4]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
+        cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
         cy.get(".index_dashboardHeaderRoot__grFKm").should("be.visible").contains("Team") //checking team heading is visible or not
 
         cy.get("#search").should("be.visible").type(teamName) //checking search field is visible or not
@@ -34,16 +37,10 @@ describe("Teams Section Teams Module All Cases", () => {
     })
 
     it("Checking All the Required fields in the Add Team's Drawer - TMC 2", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
+        cy.visit("https://timegram-8ecdc.web.app/team")
         cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.wait(5000)
-        cy.get("#Team > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
-        cy.xpath("/html/body/div[1]/div/section/section/main/div[4]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
-        cy.get(".index_dashboardHeaderRoot__grFKm").should("be.visible").contains("Team") //checking team heading is visible or not
+        cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
 
         cy.get(".ant-btn").should("be.visible").contains("Add Team").click() //clicking on add team button
         cy.get(".ant-drawer-title").should("be.visible").contains("Add Team") //checking add team heading on the drawer
@@ -61,16 +58,11 @@ describe("Teams Section Teams Module All Cases", () => {
     })
 
     it("Clicking on Create button by not filling fields - Negative - TMC 3", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
+        cy.visit("https://timegram-8ecdc.web.app/team")
         cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.wait(5000)
-        cy.get("#Team > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
-        cy.xpath("/html/body/div[1]/div/section/section/main/div[4]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
-        cy.get(".index_dashboardHeaderRoot__grFKm").should("be.visible").contains("Team") //checking team heading is visible or not
+        cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
+        
 
         cy.get(".ant-btn").should("be.visible").contains("Add Team").click() //clicking on add team button
         cy.get(".index_createButtonWrapper__4MzTo > .ant-btn").should("be.visible").contains("Create").click() //clicking on create button
@@ -80,16 +72,10 @@ describe("Teams Section Teams Module All Cases", () => {
     })
 
     it("Creating Team by filling all the required fields - Positive - TMC 4", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
+        cy.visit("https://timegram-8ecdc.web.app/team")
         cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.wait(5000)
-        cy.get("#Team > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
-        cy.xpath("/html/body/div[1]/div/section/section/main/div[4]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
-        cy.get(".index_dashboardHeaderRoot__grFKm").should("be.visible").contains("Team") //checking team heading is visible or not
+        cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
 
         cy.get(".ant-btn").should("be.visible").contains("Add Team").click() //clicking on add team button
         cy.get("#name").should("be.visible").type(teamName).should("have.value", teamName) //adding team name
@@ -105,7 +91,7 @@ describe("Teams Section Teams Module All Cases", () => {
         cy.get(".index_createButtonWrapper__4MzTo > .ant-btn").should("be.visible").contains("Create").click()
         cy.wait(4000)
         cy.checkNotificationMessage("Team created") //checking team created successfully or not
-        cy.xpath("/html/body/div[1]/div/section/section/main/div[4]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
+        cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
         cy.get("#search").should("be.visible").type(teamName) //checking search field is visible or not
         cy.wait(2000)
         //cy.xpath("/html/body/div[1]/div/section/section/main/div[4]/div/div/div[2]/div/div/div[2]/div[2]/div/div/div/div/div/div/table/tbody/tr[2]/td[1]").should("be.visible").should("have.text", teamName + "&nbsp;") //checking team name is visible or not
@@ -114,33 +100,22 @@ describe("Teams Section Teams Module All Cases", () => {
     })
 
     it("Searching Team on the Projects Page - Positive - TMC 5", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
+        cy.visit("https://timegram-8ecdc.web.app/team")
         cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.wait(5000)
-        cy.get("#Team > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
-        cy.xpath("/html/body/div[1]/div/section/section/main/div[4]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
-        cy.get(".index_dashboardHeaderRoot__grFKm").should("be.visible").contains("Team") //checking team heading is visible or not    
-        cy.get("#search").should("be.visible").type(teamName) //checking search field is visible or not
-        cy.wait(2000)
+        cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
+
+        cy.wait(5000)
         cy.get(".ant-table-row > :nth-child(1)").should("be.visible").click()
         cy.get("#name").should("be.visible").should("have.value", teamName) //checking team name is visible or not
     })
 
     it("Editing Existing Team - Positive - TMC 6", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
+        cy.visit("https://timegram-8ecdc.web.app/team")
         cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.wait(5000)
-        cy.get("#Team > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
-        cy.xpath("/html/body/div[1]/div/section/section/main/div[4]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
-        cy.get(".index_dashboardHeaderRoot__grFKm").should("be.visible").contains("Team") //checking team heading is visible or not    
+        cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
+
         cy.get("#search").should("be.visible").type(teamName) //checking search field is visible or not
         cy.wait(2000)
         cy.get(".ant-table-row > :nth-child(1)").should("be.visible").click()   //clicking on team
@@ -149,23 +124,18 @@ describe("Teams Section Teams Module All Cases", () => {
         cy.wait(3000)
         cy.checkNotificationMessage("Updated Successfully")
 
-        cy.xpath("/html/body/div[1]/div/section/section/main/div[4]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
+        cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
         cy.get("#search").should("be.visible").type(updatedName) //checking search field is visible or not
         cy.get(".ant-table-row > :nth-child(1)").should("be.visible").click()   //clicking on team
         cy.get("#name").should("be.visible").should("have.value", updatedName)
     })
 
     it("Adding User in the Existing Team - Positive - TMC 7", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
+       cy.visit("https://timegram-8ecdc.web.app/team")
         cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.wait(5000)
-        cy.get("#Team > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
-        cy.xpath("/html/body/div[1]/div/section/section/main/div[4]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
-        cy.get(".index_dashboardHeaderRoot__grFKm").should("be.visible").contains("Team") //checking team heading is visible or not    
+        cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
+
         cy.get("#search").should("be.visible").type(updatedName) //checking search field is visible or not
         cy.wait(2000)
 
@@ -177,16 +147,11 @@ describe("Teams Section Teams Module All Cases", () => {
         cy.checkNotificationMessage("Updated Successfully")
     })
     it("Removing User from the Existing Team - Positive - TMC 8", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
+        cy.visit("https://timegram-8ecdc.web.app/team")
         cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.wait(5000)
-        cy.get("#Team > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
-        cy.xpath("/html/body/div[1]/div/section/section/main/div[4]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
-        cy.get(".index_dashboardHeaderRoot__grFKm").should("be.visible").contains("Team") //checking team heading is visible or not    
+        cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
+
         cy.get("#search").should("be.visible").type(updatedName) //checking search field is visible or not
         cy.wait(2000)
 
@@ -199,16 +164,10 @@ describe("Teams Section Teams Module All Cases", () => {
     })
 
     it("Checking All the fields on the Teams section After Team Addition - TMC 9", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
+        cy.visit("https://timegram-8ecdc.web.app/team")
         cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.wait(5000)
-        cy.get("#Team > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
-        cy.xpath("/html/body/div[1]/div/section/section/main/div[4]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
-        cy.get(".index_dashboardHeaderRoot__grFKm").should("be.visible").contains("Team") //checking team heading is visible or not
+        cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
 
         cy.get("#search").should("be.visible").type(teamName).should("have.value", teamName) //checking search field is visible or not
         cy.get("#search").click().clear() //clearing the search field

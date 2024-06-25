@@ -8,11 +8,11 @@ describe("Teams User Module All Cases", () => {
     let uniqueFullName;
     let processURL;
 
-    // before(() => {
-    //     cy.clearAllSessionStorage(); //clearing the session storage
-    //     cy.clearAllLocalStorage();
-    //     cy.clearIndexedDB();
-    // })
+    before(() => {
+        cy.clearAllSessionStorage(); //clearing the session storage
+        cy.clearAllLocalStorage();
+        cy.clearIndexedDB();
+    })
 
     beforeEach(() => {
         cy.handleUncaughtException(); //handling uncaught exception
@@ -140,7 +140,7 @@ describe("Teams User Module All Cases", () => {
         cy.get(".index_nameImgWrapper__WIjsF").should("be.visible").contains(uniqueFullName)
     })
 
-    it.only("Applying Role Filter to check User Accordingly - Positive Case - AU6", () => {
+    it("Applying Role Filter to check User Accordingly - Positive Case - AU6", () => {
         cy.visit("https://timegram-8ecdc.web.app/team")
         cy.wait(2000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
