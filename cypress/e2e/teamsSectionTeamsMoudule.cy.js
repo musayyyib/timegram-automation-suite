@@ -38,11 +38,11 @@ describe("Teams Section Teams Module All Cases", () => {
 
     it("Checking All the Required fields in the Add Team's Drawer - TMC 2", () => {
         cy.visit("https://timegram-8ecdc.web.app/team")
-        cy.wait(5000)
+        cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
         cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
         cy.wait(7000)
-
+//46
         cy.get(".ant-btn").should("be.visible").contains("Add Team").click() //clicking on add team button
         cy.get(".ant-drawer-title").should("be.visible").contains("Add Team") //checking add team heading on the drawer
         cy.get(".index_closeIconWrapper__OesUG").should("be.visible") //checking the close icon is available or not
@@ -60,7 +60,7 @@ describe("Teams Section Teams Module All Cases", () => {
 
     it("Clicking on Create button by not filling fields - Negative - TMC 3", () => {
         cy.visit("https://timegram-8ecdc.web.app/team")
-        cy.wait(5000)
+        cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
         cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
         cy.wait(7000)
@@ -114,13 +114,14 @@ describe("Teams Section Teams Module All Cases", () => {
 
     it("Editing Existing Team - Positive - TMC 6", () => {
         cy.visit("https://timegram-8ecdc.web.app/team")
-        cy.wait(5000)
+        cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
         cy.xpath("/html/body/div/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams").click() //clicking on teams section on teams page
         cy.wait(7000)
 
         cy.get("#search").should("be.visible").type(teamName) //checking search field is visible or not
         cy.wait(2000)
+      //124
         cy.get(".ant-table-row > :nth-child(1)").should("be.visible").click()   //clicking on team
         cy.get("#name").should("be.visible").clear().type(updatedName).should("have.value", updatedName)    //updating team name
         cy.get(".index_createButtonWrapper__4MzTo > .ant-btn").should("be.visible").contains("Save").click() //clicking on save button

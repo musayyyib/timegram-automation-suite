@@ -36,8 +36,8 @@ describe("Teams User Module All Cases", () => {
         cy.url().should("eq", "https://timegram-8ecdc.web.app/team")
 
         cy.get(".index_dashboardHeaderRoot__grFKm").should("be.visible").contains("Team")//checking header text
-        cy.xpath("/html/body/div/div/section/section/main/div[4]/div/div/div[1]/div[1]/div/div[1]/div").should("be.visible").contains("Users")//checking users sub section
-        cy.xpath("/html/body/div/div/section/section/main/div[4]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams")//checking teams sub section
+        cy.xpath("/html/body/div[1]/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[1]/div").should("be.visible").contains("Users")//checking users sub section
+        cy.xpath("/html/body/div[1]/div/section/section/main/div[2]/div/div/div[1]/div[1]/div/div[2]/div").should("be.visible").contains("Teams")//checking teams sub section
         cy.get(".ant-btn > :nth-child(2)").should("be.visible").contains("Add User")//checking add user button
         cy.get("#search").should("be.visible")//checking search user field
         cy.get(":nth-child(2) > .ant-form-item > .ant-row > .ant-col > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-select > .ant-select-selector").should("be.visible")//checking filter by role field
@@ -88,11 +88,11 @@ describe("Teams User Module All Cases", () => {
         cy.get(".ant-select-dropdown").should("be.visible")
         cy.get(".index_userDiv__8O-6s").should("be.visible").contains("User").click()
         cy.get(".ant-modal-footer > .ant-btn-primary").should("be.visible").contains("Send Invite").click()
-        cy.wait(5000)
+        cy.wait(7000)
         cy.checkNotificationMessage("Invite(s) sent successfully")
 
         cy.get("#search").should("be.visible").type(uniqueEmail)
-        cy.xpath("/html/body/div[1]/div/section/section/main/div[4]/div/div/div[2]/div/div/div/div[2]/div[2]/div/div/div/div/div/div/div/div/table/tbody/tr[2]/td[3]/span").should("be.visible").contains(uniqueEmail)
+        cy.xpath("/html/body/div[1]/div/section/section/main/div[2]/div/div/div[2]/div/div/div/div[2]/div[2]/div/div/div/div/div/div/div/div/table/tbody/tr[2]/td[3]/span").should("be.visible").contains(uniqueEmail)
     })
 
     it("Adding Existing User - Negative Flow - AU3", () => {
@@ -139,7 +139,7 @@ describe("Teams User Module All Cases", () => {
         cy.get("#search").should("have.value", uniqueFirstName)
         cy.get(".index_nameImgWrapper__WIjsF").should("be.visible").contains(uniqueFullName)
     })
-
+    
     it("Applying Role Filter to check User Accordingly - Positive Case - AU6", () => {
         cy.visit("https://timegram-8ecdc.web.app/team")
         cy.wait(2000)
