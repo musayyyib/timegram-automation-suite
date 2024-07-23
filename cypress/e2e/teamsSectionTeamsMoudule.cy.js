@@ -144,7 +144,7 @@ describe("Teams Section Teams Module All Cases", () => {
         cy.get("#search").should("be.visible").type(updatedName) //checking search field is visible or not
         cy.wait(2000)
 
-        cy.get(":nth-child(2) > .anticon").should("be.visible").click() //clicking on delete icon
+        cy.get(":nth-child(2) > .anticon").should("be.visible").click() //clicking on add icon
         cy.get(".ant-select-selection-overflow").should("be.visible").click().type("{downarrow}{enter}") //clicking on delete icon
         cy.get(".ant-popover-inner-content > .ant-btn").should("be.visible").contains("Save").click() //clicking on delete button
 

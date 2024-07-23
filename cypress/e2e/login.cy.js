@@ -72,5 +72,3 @@ describe("Login Page all Tests", () => {
         cy.get(".ant-message-custom-content > :nth-child(2)").should("have.text", "The password is invalid or the user does not have a password.")
     })
 })
-
-//testing
