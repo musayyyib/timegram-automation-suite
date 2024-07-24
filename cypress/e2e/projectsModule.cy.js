@@ -1,11 +1,14 @@
 describe("Projects Page Test", () => {
 
-    beforeEach(() => {
-        cy.handleUncaughtException(); //handling uncaught exception
-        cy.viewport(1300, 660); //increasing the size of the page to get full view of the application
+    before(() => {
         cy.clearAllSessionStorage(); //clearing the session storage
         cy.clearAllLocalStorage();
         cy.clearIndexedDB();
+    })
+
+    beforeEach(() => {
+        cy.handleUncaughtException(); //handling uncaught exception
+        cy.viewport(1300, 660); //increasing the size of the page to get full view of the application
     })
 
     it("Projects Page -- Checking all buttons, filters, tables and small fields - PC1", () => {
@@ -47,12 +50,8 @@ describe("Projects Page Test", () => {
     })
 
     it("Creating Project by filling all the required fields - PC2", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
-        cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.get("#Projects > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
+        cy.visit("https://timegram-8ecdc.web.app/projects")
+        cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/projects")
 
         cy.get(".ant-btn").should("be.visible").contains("Create Project").click()  //clicking on create project button
@@ -67,12 +66,8 @@ describe("Projects Page Test", () => {
     })
 
     it("Creating Project with Team - PC3", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
-        cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.get("#Projects > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
+        cy.visit("https://timegram-8ecdc.web.app/projects")
+        cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/projects")
 
 
@@ -92,12 +87,8 @@ describe("Projects Page Test", () => {
     })
 
     it("Creating Project without filling all the required fields - Negative - PC4", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
-        cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.get("#Projects > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
+        cy.visit("https://timegram-8ecdc.web.app/projects")
+        cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/projects")
 
 
@@ -113,12 +104,8 @@ describe("Projects Page Test", () => {
     const clientName = "Client One"
 
     it("Creating Project with client - Positive - PC5", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
-        cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.get("#Projects > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
+        cy.visit("https://timegram-8ecdc.web.app/projects")
+        cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/projects")
 
         cy.get(".ant-btn").should("be.visible").contains("Create Project").click()  //clicking on create project button
@@ -153,14 +140,9 @@ describe("Projects Page Test", () => {
     const clientName2 = "Client Two"
 
     it("Assigning New Client to the Existing Project - Positive - PC6", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
-        cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.get("#Projects > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
+        cy.visit("https://timegram-8ecdc.web.app/projects")
+        cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/projects")
-        cy.wait(2000)
 
         cy.get(".index_projectPageWrapper__soNsJ").should("be.visible").contains("Without Team Project").click()
         cy.get(".ant-drawer-body").should("be.visible")
@@ -184,14 +166,9 @@ describe("Projects Page Test", () => {
     })
 
     it("Assigning Existing Client to the Existing Project - Positive - PC7", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
-        cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.get("#Projects > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
+        cy.visit("https://timegram-8ecdc.web.app/projects")
+        cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/projects")
-        cy.wait(2000)
 
         cy.get(".index_projectPageWrapper__soNsJ").should("be.visible").contains("With Team Project").click()
         cy.get(".ant-drawer-body").should("be.visible")
@@ -214,14 +191,9 @@ describe("Projects Page Test", () => {
     })
 
     it("Editing Project Name - PC8", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
-        cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.get("#Projects > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
+        cy.visit("https://timegram-8ecdc.web.app/projects")
+        cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/projects")
-        cy.wait(2000)
 
         cy.get(".index_projectPageWrapper__soNsJ").should("be.visible").contains("With Team Project").click()
         cy.get("#name").should("be.visible").clear().type("With Team Project - Edited")
@@ -232,16 +204,11 @@ describe("Projects Page Test", () => {
     })
 
     it("Creating Task from the Projects Page without filling the Required fields - Negative  - PC9", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
-        cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.get("#Projects > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
+        cy.visit("https://timegram-8ecdc.web.app/projects")
+        cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/projects")
-        cy.wait(2000)
 
-        cy.xpath("/html/body/div/div/section/section/main/div[8]/div[2]/div/div/div/div/div/div/div/table/tbody/tr[3]/td[1]/button").should("be.visible").click()   //clicking on the expand project button
+        cy.xpath('/html/body/div/div/section/section/main/div[6]/div[2]/div/div/div/div/div/div/div/table/tbody/tr[3]/td[1]/button').should("be.visible").click()   //clicking on the expand project button
         cy.get(".ant-table-cell-with-append > .ant-btn > span").should("be.visible").contains("New Task").click()   //clicking on add new task button
         cy.get(".anticon-check > svg").should("be.visible").click()  //clicking on tick
         cy.wait(2000)
@@ -249,16 +216,11 @@ describe("Projects Page Test", () => {
     })
 
     it("Creating Task from the Projects Page - Positive - PC10", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
-        cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.get("#Projects > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
+        cy.visit("https://timegram-8ecdc.web.app/projects")
+        cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/projects")
-        cy.wait(2000)
 
-        cy.xpath("/html/body/div/div/section/section/main/div[8]/div[2]/div/div/div/div/div/div/div/table/tbody/tr[3]/td[1]/button").should("be.visible").click()   //clicking on the expand project button
+        cy.xpath("/html/body/div/div/section/section/main/div[6]/div[2]/div/div/div/div/div/div/div/table/tbody/tr[3]/td[1]/button").should("be.visible").click()   //clicking on the expand project button
         cy.get(".ant-table-cell-with-append > .ant-btn > span").should("be.visible").contains("New Task").click()   //clicking on add new task button
         cy.get(".ant-input").should("be.visible").type("Task 1").should("have.value", "Task 1") //entering name of the task
         cy.get(".index_dateWrapper__q84MV > .undefined > .ant-form-item > .ant-row > .ant-col > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-picker > .ant-picker-input > #dueDate").should("be.visible").click() //clicking on due data field
@@ -275,12 +237,8 @@ describe("Projects Page Test", () => {
     })
 
     it.skip("Deleting Project from the project page - PC4", () => {
-        cy.visit("https://timegram-8ecdc.web.app/login")
-        cy.wait(5000)
-        cy.login()
-        cy.wait(10000)
-        cy.url().should("eq", "https://timegram-8ecdc.web.app/dashboard")
-        cy.get("#Projects > .index_linkText__d9gMy > .index_textWhite__OiHF8").should("be.visible").click()
+        cy.visit("https://timegram-8ecdc.web.app/projects")
+        cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/projects")
 
         cy.get('[data-row-key="xXO9l4hjusaPjElSqlXC"] > .index_actions__JC67o').click()
