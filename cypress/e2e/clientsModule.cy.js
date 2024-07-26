@@ -106,6 +106,7 @@ describe("Clients Module All Cases", () => {
         cy.visit("https://timegram-8ecdc.web.app/clients")
         cy.wait(7000)
         cy.url().should("eq", "https://timegram-8ecdc.web.app/clients")
+        cy.wait(2000)
 
         cy.get("#search").type(newClientName)  //searching added client
         cy.get(".index_projectTitle__BdpNP").should("be.visible").contains(newClientName).click()   //clicking on searched client
